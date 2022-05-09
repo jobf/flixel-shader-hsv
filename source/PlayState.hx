@@ -16,7 +16,8 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
-		hsvRange = 255;
+
+		hsvRange = 360;
 		hsv = new HSVShader(hsvRange);
 
 		var sprite = new FlxSprite("assets/test.png");

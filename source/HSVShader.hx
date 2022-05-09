@@ -49,7 +49,7 @@ class HSVShader extends FlxShader
 		HSV.value = [1.0, 1.0, 1.0];
 	}
 
-	/** set hue, range 0 to 360 **/
+	/** set hue **/
 	public function setH(h:Int)
 	{
 		HSV.value[0] = h / range;
