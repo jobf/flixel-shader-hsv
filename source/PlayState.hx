@@ -8,6 +8,7 @@ import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
+	var hsvRange:Int;
 	var hsv:HSVShader;
 	var isAlteringBrightness = true;
 	var axisInfoY:FlxText;
@@ -15,7 +16,8 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
-		hsv = new HSVShader();
+		hsvRange = 255;
+		hsv = new HSVShader(hsvRange);
 
 		var sprite = new FlxSprite("assets/test.png");
 		sprite.shader = hsv;
@@ -74,4 +76,5 @@ class PlayState extends FlxState
 		axisInfoX.y -= axisInfoX.height;
 		add(axisInfoX);
 	}
+
 }
