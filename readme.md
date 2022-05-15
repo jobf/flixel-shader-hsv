@@ -6,5 +6,5 @@ This is almost a direct implementation of the code discussed here - https://game
 
 Made a couple of small tweaks 
  
- - mod h s and b
+ - mod hue
  - include normalized line in hsv2rgb function

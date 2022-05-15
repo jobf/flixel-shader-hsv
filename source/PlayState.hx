@@ -8,7 +8,8 @@ import flixel.util.FlxColor;
 
 class PlayState extends FlxState
 {
-	var hsvRange:Int;
+	var hueRange:Int;
+	var brightnessSaturationRange:Int;
 	var hsv:HSVShader;
 	var isAlteringBrightness = true;
 	var axisInfoY:FlxText;
@@ -17,10 +18,12 @@ class PlayState extends FlxState
 	{
 		super.create();
 
-		hsvRange = 360;
-		hsv = new HSVShader(hsvRange);
-
+		hueRange = 360;
+		brightnessSaturationRange = 100;
+		hsv = new HSVShader(hueRange, brightnessSaturationRange);
 		var sprite = new FlxSprite("assets/test.png");
+		sprite.screenCenter();
+
 		sprite.shader = hsv;
 		add(sprite);
 
@@ -31,8 +34,8 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		var x = Std.int((FlxG.mouse.x / FlxG.width) * 360);
-		var y = Std.int((FlxG.mouse.y / FlxG.height) * 360);
+		var x = Std.int((FlxG.mouse.x / FlxG.width) * hueRange);
+		var y = Std.int((FlxG.mouse.y / FlxG.height) * brightnessSaturationRange);
 
 		hsv.setH(x);
 

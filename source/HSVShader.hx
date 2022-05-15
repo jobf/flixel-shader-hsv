@@ -37,35 +37,38 @@ class HSVShader extends FlxShader
 		vec4 textureColor = flixel_texture2D(bitmap, openfl_TextureCoordv);
 		vec3 fragRGB = textureColor.rgb;
 		vec3 fragHSV = rgb2hsv(fragRGB).xyz;
-		fragHSV.xzy += mod(HSV.xzy, 1.0);
+		fragHSV.x += mod(HSV.x, 1.0);
+		fragHSV.yz *= HSV.yz;
 		fragRGB = hsv2rgb(fragHSV);
 		gl_FragColor = vec4(fragRGB, textureColor.w);
 	}
 	')
-	public function new(hsvRange:Int)
+	public function new(hueRange:Int, brightnessSaturationRange:Int)
 	{
 		super();
-		range = hsvRange;
+		this.hueRange = hueRange;
+		this.brightnessSaturationRange = brightnessSaturationRange;
 		HSV.value = [1.0, 1.0, 1.0];
 	}
 
 	/** set hue **/
 	public function setH(h:Int)
 	{
-		HSV.value[0] = h / range;
+		HSV.value[0] = h / hueRange;
 	}
 
 	/** set saturation **/
 	public function setS(s:Int)
 	{
-		HSV.value[1] = s / range;
+		HSV.value[1] = s / brightnessSaturationRange;
 	}
 
 	/** set value (brightness) **/
 	public function setV(v:Int)
 	{
-		HSV.value[2] = v / range;
+		HSV.value[2] = v / brightnessSaturationRange;
 	}
 
-	var range:Int;
+	var hueRange:Int;
+	var brightnessSaturationRange:Int;
 }
